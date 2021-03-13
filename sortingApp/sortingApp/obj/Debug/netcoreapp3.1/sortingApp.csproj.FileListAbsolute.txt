@@ -1,0 +1,15 @@
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.exe
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.deps.json
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.runtimeconfig.json
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.runtimeconfig.dev.json
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.dll
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\bin\Debug\netcoreapp3.1\sortingApp.pdb
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.csprojAssemblyReference.cache
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.Form1.resources
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.csproj.GenerateResource.cache
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.AssemblyInfoInputs.cache
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.AssemblyInfo.cs
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.csproj.CoreCompileInputs.cache
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.dll
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.pdb
+C:\Users\ggoys\Desktop\sortingApp\sortingApp\sortingApp\obj\Debug\netcoreapp3.1\sortingApp.genruntimeconfig.cache
