@@ -17,6 +17,7 @@ namespace sortingApp
         Graphics g;
         Brush whiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush blackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+        Brush redBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         Brush greenBrush = new System.Drawing.SolidBrush(System.Drawing.Color.LightGreen);
         int rectWidth = 10; // rectangle width
         
@@ -228,6 +229,47 @@ namespace sortingApp
         {
             int listLenght = theArray.Length;
             MergeSort(theArray, 0, listLenght - 1);
+            
+        }
+
+        private void insertionSort(int[] lst)
+        {
+            int lstLenght = theArray.Length;
+            for(int i = 1; i < lstLenght; i++)
+            {
+                int key = lst[i];
+                //paints key element red
+                g.FillRectangle(blackBrush, i * rectWidth, 0, rectWidth, panel1.Height);
+                g.FillRectangle(redBrush, i * rectWidth, panel1.Height - lst[i], rectWidth, panel1.Height);
+                Thread.Sleep(100);
+                g.FillRectangle(blackBrush, i * rectWidth, 0, rectWidth, panel1.Height);
+                g.FillRectangle(whiteBrush, i * rectWidth, panel1.Height - lst[i], rectWidth, panel1.Height);
+                int j = i - 1;
+                while (j >= 0 && lst[j] > key)
+                {
+                    lst[j + 1] = lst[j];
+                    j--;
+                }
+                lst[j + 1] = key;
+                //paints left side elements white
+                for (int m = 0; m < i; m++)
+                {
+
+                    g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
+                    g.FillRectangle(whiteBrush, m * rectWidth, panel1.Height - lst[m], rectWidth, panel1.Height);
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            insertionSort(theArray);
+            for (int m = 0; m < theArray.Count(); m++)
+            {
+                Thread.Sleep(10);
+                g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
+                g.FillRectangle(greenBrush, m * rectWidth, panel1.Height - theArray[m], rectWidth, panel1.Height);
+            }
         }
     }
 }
