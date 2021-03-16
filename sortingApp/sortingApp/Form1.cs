@@ -111,7 +111,7 @@ namespace sortingApp
         private void button2_Click(object sender, EventArgs e)
         {
             
-            int listLenght = theArray.Count();
+            int listLenght = theArray.Length;
             bubbleSort(theArray, listLenght);
             
         }
@@ -138,6 +138,96 @@ namespace sortingApp
         {
             int listLenght = theArray.Count();
             selectionSort(theArray, listLenght);
+            
+            
+        }
+        //merge method for mergesort
+        private void Merge(int[] input, int left, int middle, int right)
+        {
+            int[] leftArray = new int[middle - left + 1];
+            int[] rightArray = new int[right - middle];
+            //copying input to diveded arrays
+            Array.Copy(input, left, leftArray, 0, middle - left + 1);
+            Array.Copy(input, middle + 1, rightArray, 0, right - middle);
+            //sorting the array
+            int i = 0;
+            int j = 0;
+            for (int k = left; k < right + 1; k++)
+            {
+                if (i == leftArray.Length)
+                {
+                    input[k] = rightArray[j];
+                    j++;
+                }
+                else if (j == rightArray.Length)
+                {
+                    input[k] = leftArray[i];
+                    i++;
+                }
+                else if (leftArray[i] <= rightArray[j])
+                {
+                    input[k] = leftArray[i];
+                    i++;
+                }
+                else
+                {
+                    input[k] = rightArray[j];
+                    j++;
+                }
+            }
+            //drawing the array
+            if(isSorted(theArray))
+            {
+                for (int m = 0; m < input.Count(); m++)
+                {
+
+                    g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
+                    g.FillRectangle(greenBrush, m * rectWidth, panel1.Height - input[m], rectWidth, panel1.Height);
+                }
+            }
+            else
+            {
+                for (int m = 0; m < input.Count(); m++)
+                {
+
+                    g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
+                    g.FillRectangle(whiteBrush, m * rectWidth, panel1.Height - input[m], rectWidth, panel1.Height);
+                }
+            }
+            Thread.Sleep(100);
+        }
+
+        private void MergeSort(int[] input, int left, int right)
+        {
+            if (left < right)
+            {
+                int middle = (left + right) / 2;
+
+                MergeSort(input, left, middle);
+                MergeSort(input, middle + 1, right);
+
+                Merge(input, left, middle, right);
+            }
+        }
+        //checks if the array sorted or not
+        private bool isSorted(int[] lst)
+        {
+            int i = 0;
+            while (i < lst.Length - 1)
+            {
+                if (lst[i] > lst[i + 1])
+                {
+                    return false;
+                }
+                i++;
+            }
+            return true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int listLenght = theArray.Length;
+            MergeSort(theArray, 0, listLenght - 1);
         }
     }
 }
