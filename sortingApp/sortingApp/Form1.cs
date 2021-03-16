@@ -13,19 +13,19 @@ namespace sortingApp
 {
     public partial class Form1 : Form
     {
-        public static int[] theArray;
+        public static int[] theArray; //initializing public array
         Graphics g;
         Brush whiteBrush = new System.Drawing.SolidBrush(System.Drawing.Color.White);
         Brush blackBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
         Brush greenBrush = new System.Drawing.SolidBrush(System.Drawing.Color.LightGreen);
-        int rectWidth = 10;
+        int rectWidth = 10; // rectangle width
         
 
         public Form1()
         {
             InitializeComponent();
         }
-
+        //random array generator
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -52,32 +52,71 @@ namespace sortingApp
             }
         }
 
-        
-
-        private void button2_Click(object sender, EventArgs e)
+        private void bubbleSort(int[] lst, int lstlenght)
         {
-            int listLenght = theArray.Count();
-            int k = 0;
             
-            for (int i = 0; i < listLenght - 1; i++)
+            int k = 0;
+
+            for (int i = 0; i < lstlenght - 1; i++)
             {
-                for (k = 0; k < listLenght - 1 - i; k++)
+                for (k = 0; k < lstlenght - 1 - i; k++)
                 {
                     if (theArray[k] > theArray[k + 1])
                     {
-                        Swap(k, k + 1);
+                        bubleSwap(k, k + 1);
                     }
                 }
-                //makes rectangle green
+                //makes sorted rectangle green
                 g.FillRectangle(blackBrush, k * rectWidth, 0, rectWidth, panel1.Height);
-                g.FillRectangle(greenBrush, k * rectWidth, panel1.Height - theArray[k], rectWidth, panel1.Height);
+                g.FillRectangle(greenBrush, k * rectWidth, panel1.Height - lst[k], rectWidth, panel1.Height);
             }
             //makes last rectangle green
             g.FillRectangle(blackBrush, 0, 0, rectWidth, panel1.Height);
-            g.FillRectangle(greenBrush, 0, panel1.Height - theArray[0], rectWidth, panel1.Height);
+            g.FillRectangle(greenBrush, 0, panel1.Height - lst[0], rectWidth, panel1.Height);
+
         }
 
-        private void Swap(int k, int v)
+        private void selectionSort(int[] lst, int lstlength)
+        {
+            for (int i=0; i < lstlength - 1; i++)
+            {
+                int smallestNum = lst[lstlength - 1];
+                int indx = lstlength - 1;
+                for(int j = i; j < lstlength - 1; j++)
+                {
+                    if (lst[j] < smallestNum)
+                    {
+                        smallestNum = lst[j];
+                        indx = j;
+                        Thread.Sleep(10);
+                    }
+                }
+                lst[indx] = lst[i];
+                lst[i] = smallestNum;
+                //makes sorted rectangle green
+                g.FillRectangle(blackBrush, i * rectWidth, 0, rectWidth, panel1.Height);
+                g.FillRectangle(greenBrush, i * rectWidth, panel1.Height - lst[i], rectWidth, panel1.Height);
+                if (i != indx)
+                {
+                    //makes changed recangle white
+                    g.FillRectangle(blackBrush, indx * rectWidth, 0, rectWidth, panel1.Height);
+                    g.FillRectangle(whiteBrush, indx * rectWidth, panel1.Height - lst[indx], rectWidth, panel1.Height);
+                }
+            }
+            //makes last rectangle green
+            g.FillRectangle(blackBrush, (lstlength - 1) * rectWidth, 0, rectWidth, panel1.Height);
+            g.FillRectangle(greenBrush, (lstlength - 1) * rectWidth, panel1.Height - lst[lstlength-1], rectWidth, panel1.Height);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            int listLenght = theArray.Count();
+            bubbleSort(theArray, listLenght);
+            
+        }
+
+        private void bubleSwap(int k, int v)
         {
             int temp;
             int maxVal = panel1.Height;
@@ -93,6 +132,12 @@ namespace sortingApp
             g.FillRectangle(whiteBrush, v * rectWidth, maxVal - theArray[v],rectWidth , maxVal);
 
             Thread.Sleep(10);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int listLenght = theArray.Count();
+            selectionSort(theArray, listLenght);
         }
     }
 }
