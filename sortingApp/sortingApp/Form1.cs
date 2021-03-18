@@ -20,12 +20,24 @@ namespace sortingApp
         Brush redBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         Brush greenBrush = new System.Drawing.SolidBrush(System.Drawing.Color.LightGreen);
         int rectWidth = 10; // rectangle width
+        bool boolArr = false;// array control boolean
         
 
         public Form1()
         {
             InitializeComponent();
         }
+        //checks if the array created or not
+        private bool arrControl(bool ctrl)
+        {
+            if (ctrl == false)
+            {
+                MessageBox.Show("Please create an array first!");
+                return false;
+            }
+            return true;
+        }
+
         //random array generator
         private void button1_Click(object sender, EventArgs e)
         {
@@ -45,6 +57,7 @@ namespace sortingApp
                 //initializing random array
                 theArray[i] = rnd.Next(10, maxValue);
             }
+            boolArr = true;
             
             for (int i = 0; i < numOfEntries; i++)
             {
@@ -89,7 +102,7 @@ namespace sortingApp
                     {
                         smallestNum = lst[j];
                         indx = j;
-                        Thread.Sleep(10);
+                        Thread.Sleep(50);
                     }
                 }
                 lst[indx] = lst[i];
@@ -108,39 +121,40 @@ namespace sortingApp
             g.FillRectangle(blackBrush, (lstlength - 1) * rectWidth, 0, rectWidth, panel1.Height);
             g.FillRectangle(greenBrush, (lstlength - 1) * rectWidth, panel1.Height - lst[lstlength-1], rectWidth, panel1.Height);
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            int listLenght = theArray.Length;
-            bubbleSort(theArray, listLenght);
-            
+            if (arrControl(boolArr) == true)
+            {
+                int listLenght = theArray.Length;
+                bubbleSort(theArray, listLenght);
+            }
         }
-
+        //buble sort swap method
         private void bubleSwap(int k, int v)
         {
             int temp;
             int maxVal = panel1.Height;
-
             temp = theArray[k];
             theArray[k] = theArray[v];
             theArray[v] = temp;
             //deletes rectangles that is swaping 
             g.FillRectangle(blackBrush, k * rectWidth, 0, rectWidth, maxVal );
             g.FillRectangle(blackBrush, v * rectWidth, 0, rectWidth, maxVal);
-            //draws rectangles that is swapinn
+            //draws rectangles that is swaping
             g.FillRectangle(whiteBrush, k * rectWidth, maxVal - theArray[k], rectWidth, maxVal);
             g.FillRectangle(whiteBrush, v * rectWidth, maxVal - theArray[v],rectWidth , maxVal);
 
-            Thread.Sleep(10);
+            Thread.Sleep(5);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int listLenght = theArray.Count();
-            selectionSort(theArray, listLenght);
-            
-            
+            if (arrControl(boolArr) == true)
+            {
+                int listLenght = theArray.Count();
+                selectionSort(theArray, listLenght);
+            }
         }
         //merge method for mergesort
         private void Merge(int[] input, int left, int middle, int right)
@@ -181,7 +195,7 @@ namespace sortingApp
             {
                 for (int m = 0; m < input.Count(); m++)
                 {
-
+                    Thread.Sleep(10);
                     g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
                     g.FillRectangle(greenBrush, m * rectWidth, panel1.Height - input[m], rectWidth, panel1.Height);
                 }
@@ -227,9 +241,11 @@ namespace sortingApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int listLenght = theArray.Length;
-            MergeSort(theArray, 0, listLenght - 1);
-            
+            if (arrControl(boolArr) == true)
+            {
+                int listLenght = theArray.Length;
+                MergeSort(theArray, 0, listLenght - 1);
+            }
         }
 
         private void insertionSort(int[] lst)
@@ -259,16 +275,26 @@ namespace sortingApp
                     g.FillRectangle(whiteBrush, m * rectWidth, panel1.Height - lst[m], rectWidth, panel1.Height);
                 }
             }
+            //paints the last element white
+            g.FillRectangle(blackBrush, (lstLenght-1) * rectWidth, 0, rectWidth, panel1.Height);
+            g.FillRectangle(whiteBrush, (lstLenght-1) * rectWidth, panel1.Height - lst[lstLenght - 1], rectWidth, panel1.Height);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            insertionSort(theArray);
-            for (int m = 0; m < theArray.Count(); m++)
+            if (arrControl(boolArr) == true)
             {
-                Thread.Sleep(10);
-                g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
-                g.FillRectangle(greenBrush, m * rectWidth, panel1.Height - theArray[m], rectWidth, panel1.Height);
+                insertionSort(theArray);
+                if (isSorted(theArray))
+                {
+                    //paints the sorted array green
+                    for (int m = 0; m < theArray.Count(); m++)
+                    {
+                        Thread.Sleep(10);
+                        g.FillRectangle(blackBrush, m * rectWidth, 0, rectWidth, panel1.Height);
+                        g.FillRectangle(greenBrush, m * rectWidth, panel1.Height - theArray[m], rectWidth, panel1.Height);
+                    }
+                }
             }
         }
     }
